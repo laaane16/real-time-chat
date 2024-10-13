@@ -1,16 +1,19 @@
 import { Button, Form, Input, Layout, Card } from "antd";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 
 import { useAppDispatch } from "../hooks/useAppDispatch";
 import { useSelector } from "react-redux";
 import { selectStatus } from "../redux/slices/auth/selectors";
 import { Status } from "../@types/types";
+import { useInput } from "../hooks/useInput";
 
 const Login = () => {
   const { login } = useAppDispatch();
   const status = useSelector(selectStatus);
-  const [name, setName] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+
+  const [name, changeName] = useInput('')
+  const [password, changePassword] = useInput('')
+  console.log(name)
 
   const onFinish = () => {
     login([name, password]);
@@ -65,9 +68,7 @@ const Login = () => {
           >
             <Input
               value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
+              onChange={changeName}
             />
           </Form.Item>
 
@@ -83,9 +84,7 @@ const Login = () => {
           >
             <Input.Password
               value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
+              onChange={changePassword}
             />
           </Form.Item>
 

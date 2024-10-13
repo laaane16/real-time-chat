@@ -1,6 +1,8 @@
+import { Spin } from "antd";
+
 const Loader = () => {
   return (
-    <h1>Выполняется загрузка <br /> Ожидайте</h1>
+    <Spin style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}/>
   )
 };
 
